@@ -10,7 +10,9 @@ export default function Layout() {
       <main className="flex-1">
         <PageHeader />
         <SidebarTrigger />
-        <Outlet />
+        <div className="p-6">
+          <Outlet />
+        </div>
       </main>
     </SidebarProvider>
   );
