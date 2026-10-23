@@ -4,6 +4,7 @@ import {
   Activity,
   Calendar,
   Download,
+  RefreshCcw,
   RefreshCw,
   Users,
   Wallet,
@@ -26,115 +27,77 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Customers() {
   return (
-    <div className="flex flex-col gap-6">
-      {/* Cabeçalho da Página */}
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      {/* Lado Esquerdo: Título e Descrição */}
       <div>
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+        <div className="flex items-center gap-2">
+          <h1 className="text-headline-xl text-foreground text-4xl font-bold">
             Overview
           </h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            Welcome back, Alex. Here's what's happening with your revenue and
-            customer growth today.
-          </p>
+          {/* Badge de Live Telemetry usando as cores do sistema */}
+          <span className="flex items-center gap-1.5 rounded-full border border-success-border bg-secondary px-2 py-0.5 text-xs text-success">
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-75"></span>
+              <span className="relative inline-flex size-2 rounded-full bg-success"></span>
+            </span>
+            Live telemetry
+          </span>
+        </div>
+        <p className="text-body-default text-muted-foreground mt-1">
+          Welcome back, Alex. Here's what's happening with your revenue and
+          customer growth today.
+        </p>
+      </div>
+
+      {/* Lado Direito: Filtros e Ações */}
+      <div className="flex items-end gap-2">
+        {/* Linha de cima: Selects */}
+        <div className="flex h-8 items-center rounded-md bg-muted p-0.5">
+          <Select defaultValue="30d">
+            <SelectTrigger
+              className="h-7 w-35 border-0 bg-background shadow-sm focus:ring-0 focus:ring-offset-0 text-label-sm font-medium gap-2"
+              aria-label="Selecionar período"
+            >
+              <Calendar
+                className="size-3.5 text-muted-foreground"
+                aria-hidden="true"
+              />
+              <SelectValue placeholder="Período" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="30d">Last 30 Days</SelectItem>
+              <SelectItem value="90d">Last 90 Days</SelectItem>
+            </SelectContent>
+          </Select>
+          <span className="px-2 text-label-sm text-muted-foreground">
+            vs Prev. Period
+          </span>
         </div>
 
-        <div className="flex w-full items-center justify-between">
-          {/* Contentor Cinzento */}
-          <div className="flex h-9 items-center rounded-md bg-muted p-1">
-            {/* O Select do shadcn */}
-            <Select defaultValue="30d">
-              <SelectTrigger
-                className="h-7 w-37.5 border-0 bg-background shadow-sm focus:ring-0 focus:ring-offset-0 text-sm font-medium gap-2"
-                aria-label="Selecionar período de tempo"
-              >
-                {/* O ícone fica ao lado do SelectValue. O shadcn distribui o espaço com flex. */}
-                <Calendar
-                  className="size-4 text-muted-foreground shrink-0"
-                  aria-hidden="true"
-                />
-                <SelectValue placeholder="Período" />
-              </SelectTrigger>
-
-              <SelectContent>
-                <SelectItem value="7d">Last 7 Days</SelectItem>
-                <SelectItem value="30d">Last 30 Days</SelectItem>
-                <SelectItem value="90d">Last 90 Days</SelectItem>
-                <SelectItem value="1y">Last Year</SelectItem>
-              </SelectContent>
-            </Select>
-
-            {/* Texto comparativo */}
-            <div className="flex items-center px-3 text-sm text-muted-foreground">
-              <span className="text-xs font-medium uppercase tracking-wider mr-1">
-                vs
-              </span>
-              <span>Prev. Period</span>
-            </div>
-          </div>
-
-          {/* Botão de Download */}
+        {/* Linha de baixo: Botões de Ação */}
+        <div className="flex items-center gap-2">
           <Button
             variant="outline"
-            className="h-9 gap-2 bg-background shadow-sm text-sm font-medium"
-            aria-label="Descarregar relatório"
+            className="h-8 gap-2 bg-background text-label-md shadow-sm"
           >
             <Download
-              className="size-4 text-muted-foreground"
+              className="size-3.5 text-muted-foreground"
               aria-hidden="true"
             />
             Download Report
           </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            className="size-8 bg-background shadow-sm"
+            aria-label="Atualizar dados"
+          >
+            <RefreshCcw
+              className="size-3.5 text-muted-foreground"
+              aria-hidden="true"
+            />
+          </Button>
         </div>
-      </div>
-
-      {/* Grelha de KPIs */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <MetricCard
-          title="Total Revenue"
-          value="$48,295.00"
-          icon={<Wallet className="size-4" />}
-          delta="+14.2%"
-          trend="up"
-          deltaLabel="vs last month"
-          footerLabel="Goal: $50,000"
-          footerValue="96.6%"
-        />
-
-        <MetricCard
-          title="Total Customers"
-          value="2,845"
-          icon={<Users className="size-4" />}
-          delta="+8.1%"
-          trend="up"
-          deltaLabel="vs last month"
-          footerLabel="Acquisition Velocity"
-          footerValue="+214 new"
-          footerValueColor="text-emerald-600 dark:text-emerald-400"
-        />
-
-        <MetricCard
-          title="Active Subscriptions"
-          value="1,924"
-          icon={<RefreshCw className="size-4" />}
-          delta="+12.5%"
-          trend="up"
-          deltaLabel="vs last month"
-          footerLabel="Renewal Benchmark"
-          footerValue="89.2% rate"
-        />
-
-        <MetricCard
-          title="Monthly Churn Rate"
-          value="2.4%"
-          icon={<Activity className="size-4" />}
-          delta="-0.6%"
-          trend="down" // No churn, descer é bom (por isso o texto do footer é verde)
-          deltaLabel="favorable trend"
-          footerLabel="SaaS Benchmark"
-          footerValue="-0.8% below"
-          footerValueColor="text-emerald-600 dark:text-emerald-400"
-        />
       </div>
     </div>
   );
