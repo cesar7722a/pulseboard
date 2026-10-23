@@ -1,5 +1,19 @@
 import type { Customer } from "../types/dashboard";
 
+export interface CustomerGrowthData {
+  month: string;
+  newCustomers: number;
+  churnedCustomers: number;
+}
+
+export const customerGrowthData: CustomerGrowthData[] = [
+  { month: "Jan", newCustomers: 120, churnedCustomers: 30 },
+  { month: "Feb", newCustomers: 150, churnedCustomers: 25 },
+  { month: "Mar", newCustomers: 180, churnedCustomers: 40 },
+  { month: "Apr", newCustomers: 220, churnedCustomers: 35 },
+  { month: "May", newCustomers: 280, churnedCustomers: 25 },
+];
+
 export const customers: Customer[] = [
   {
     id: 1,

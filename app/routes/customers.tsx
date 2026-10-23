@@ -1,6 +1,6 @@
 import { MetricCard } from "~/components/metric-card";
-import type { Route } from "./+types/home";
 import { Activity, RefreshCw, Users, Wallet } from "lucide-react";
+import type { Route } from "./+types/customers";
 
 export function meta({}: Route.MetaArgs) {
   return [

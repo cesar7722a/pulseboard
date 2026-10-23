@@ -1,5 +1,60 @@
 import type { Activity } from "../types/dashboard";
 
+// Adiciona isto ao teu ficheiro de dados
+
+export type ActivityType =
+  | "upgrade"
+  | "payment"
+  | "onboard"
+  | "settings"
+  | "webhook";
+
+export interface ActivityLog {
+  id: number;
+  type: ActivityType;
+  title: string;
+  subtitle: string;
+  time: string;
+}
+
+export const recentActivities: ActivityLog[] = [
+  {
+    id: 1,
+    type: "upgrade",
+    title: "Acme Labs upgraded to Enterprise",
+    subtitle: "+$2,201 MRR",
+    time: "12m ago",
+  },
+  {
+    id: 2,
+    type: "payment",
+    title: "Payment verified for #INV-2024-884",
+    subtitle: "$499.00 processed",
+    time: "45m ago",
+  },
+  {
+    id: 3,
+    type: "onboard",
+    title: "Marcus Brody onboarded workspace",
+    subtitle: "OrbitScale.org",
+    time: "2h ago",
+  },
+  {
+    id: 4,
+    type: "settings",
+    title: "Nexus Tech adjusted seats to Pro",
+    subtitle: "Seat count: 14",
+    time: "4h ago",
+  },
+  {
+    id: 5,
+    type: "webhook",
+    title: "Stripe webhook batch processed",
+    subtitle: "18 events confirmed",
+    time: "6h ago",
+  },
+];
+
 export const activities: Activity[] = [
   {
     id: 1,

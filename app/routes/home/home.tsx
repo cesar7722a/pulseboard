@@ -1,14 +1,4 @@
-import { MetricCard } from "~/components/metric-card";
-import type { Route } from "./+types/home";
-import {
-  Activity,
-  Calendar,
-  Download,
-  RefreshCcw,
-  RefreshCw,
-  Users,
-  Wallet,
-} from "lucide-react";
+import { Calendar, Download, RefreshCcw } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
   Select,
@@ -18,6 +8,10 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { RevenueCard } from "~/components/revenue-card";
+import { OverviewKPIs } from "./components/overviewKPIs";
+import type { Route } from "./+types/home";
+import { ActivityStream } from "./components/activity-stream";
+import { CustomerGrowthCard } from "./components/customer-growth-card";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -28,7 +22,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Customers() {
   return (
-    <div className="space-y-10">
+    <div className="flex flex-col gap-x-6 space-y-12">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         {/* Lado Esquerdo: Título e Descrição */}
         <div>
@@ -102,7 +96,23 @@ export default function Customers() {
           </div>
         </div>
       </div>
-      <RevenueCard />
+
+      <OverviewKPIs />
+
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        {/* Coluna Esquerda - Ocupa 2 colunas */}
+        <div className="lg:col-span-2 flex flex-col">
+          <RevenueCard />
+        </div>
+
+        {/* Coluna Direita - Ocupa 1 coluna e empilha os dois */}
+        <div className="lg:col-span-1 flex flex-col gap-4">
+          <CustomerGrowthCard />
+          <ActivityStream />
+        </div>
+      </div>
+
+      {/* <RecentTransactions /> */}
     </div>
   );
 }
