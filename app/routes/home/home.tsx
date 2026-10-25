@@ -12,6 +12,7 @@ import { OverviewKPIs } from "./components/overviewKPIs";
 import type { Route } from "./+types/home";
 import { ActivityStream } from "./components/activity-stream";
 import { CustomerGrowthCard } from "./components/customer-growth-card";
+import { ServiceHealth } from "./components/service-health";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -109,6 +110,7 @@ export default function Customers() {
         <div className="lg:col-span-1 flex flex-col gap-4">
           <CustomerGrowthCard />
           <ActivityStream />
+          <ServiceHealth />
         </div>
       </div>
 
