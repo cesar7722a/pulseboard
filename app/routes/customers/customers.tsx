@@ -11,6 +11,7 @@ import { CompactMetricCard } from "./components/compact-metric-card";
 import { customers, customerStats, type CustomerStat } from "~/data/customers";
 import { DataTable } from "~/components/data-table/data-table";
 import { columns } from "./components/columns";
+import { CrudInteractionCenter } from "./components/crud-interaction-center";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -93,6 +94,8 @@ export default function Customers() {
         variant="customers" // Ativa a Toolbar, Barra de Ações e Paginação
         searchKey="name" // Define que a pesquisa vai filtrar pela coluna "name"
       />
+
+      <CrudInteractionCenter />
     </div>
   );
 }
