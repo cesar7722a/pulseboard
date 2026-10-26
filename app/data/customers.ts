@@ -14,6 +14,70 @@ export const customerGrowthData: CustomerGrowthData[] = [
   { month: "May", newCustomers: 280, churnedCustomers: 25 },
 ];
 
+export interface CustomerStat {
+  id: number;
+  key: string;
+  label: string;
+  value: number;
+  format: "number" | "percentage";
+  change: number;
+  trend: "up" | "down" | "stable";
+  description: string;
+  icon: string;
+  color: "green" | "purple" | "red" | "gray";
+}
+
+export const customerStats: CustomerStat[] = [
+  {
+    id: 1,
+    key: "totalCustomers",
+    label: "Total Customers",
+    value: 2845,
+    format: "number",
+    change: 12.4,
+    trend: "up",
+    description: "vs. last month",
+    icon: "users",
+    color: "purple",
+  },
+  {
+    id: 2,
+    key: "activeSubscriptions",
+    label: "Active Subscriptions",
+    value: 2418,
+    format: "number",
+    change: 8.5,
+    trend: "up",
+    description: "85.0% of total customers",
+    icon: "badge-check",
+    color: "green",
+  },
+  {
+    id: 3,
+    key: "pendingVerification",
+    label: "Pending Verification",
+    value: 284,
+    format: "number",
+    change: 9.9,
+    trend: "up",
+    description: "9.9% of total customers",
+    icon: "hourglass",
+    color: "gray",
+  },
+  {
+    id: 4,
+    key: "churnedLast30Days",
+    label: "Churned (30D)",
+    value: 143,
+    format: "number",
+    change: -1.8,
+    trend: "down",
+    description: "vs. previous 30 days",
+    icon: "user-round-x",
+    color: "red",
+  },
+];
+
 export const customers: Customer[] = [
   {
     id: 1,

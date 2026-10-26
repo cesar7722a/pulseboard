@@ -6,7 +6,7 @@ import {
   CardTitle,
   CardDescription,
 } from "~/components/ui/card";
-import { columns, type Transaction } from "./components/table/columns";
+import { columns, type Transaction } from "./table/columns";
 
 // Dados de exemplo (idealmente viriam de um loader do React Router)
 const data: Transaction[] = [

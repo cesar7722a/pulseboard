@@ -11,8 +11,10 @@ export type Transaction = {
   date: string;
 };
 
+// 1. O Helper recebe as Features e o Tipo
 const columnHelper = createColumnHelper<DataTableFeatures, Transaction>();
 
+// 2. Exporta como columnHelper.columns
 export const columns = columnHelper.columns([
   {
     accessorKey: "customer",

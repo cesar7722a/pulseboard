@@ -13,7 +13,7 @@ import type { Route } from "./+types/home";
 import { ActivityStream } from "./components/activity-stream";
 import { CustomerGrowthCard } from "./components/customer-growth-card";
 import { ServiceHealth } from "./components/service-health";
-import { RecentTransactions } from "./recent-transactions";
+import { RecentTransactions } from "./components/recent-transactions";
 
 export function meta({}: Route.MetaArgs) {
   return [
