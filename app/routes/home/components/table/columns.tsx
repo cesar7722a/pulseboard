@@ -1,16 +1,19 @@
+import { createColumnHelper } from "@tanstack/react-table";
+import type { DataTableFeatures } from "~/components/data-table/data-table-features";
 import { Badge } from "~/components/ui/badge";
-import { ColumnDef } from "@tanstack/react-table";
 
-export type RecentActivity = {
+export type Transaction = {
   id: string;
   customer: string;
-  plan: string;
+  email: string;
   amount: number;
   status: "success" | "pending" | "failed";
   date: string;
 };
 
-export const recentActivityColumns: ColumnDef<RecentActivity>[] = [
+const columnHelper = createColumnHelper<DataTableFeatures, Transaction>();
+
+export const columns = columnHelper.columns([
   {
     accessorKey: "customer",
     header: "Customer",
@@ -19,8 +22,8 @@ export const recentActivityColumns: ColumnDef<RecentActivity>[] = [
         <span className="font-medium text-foreground">
           {row.getValue("customer")}
         </span>
-        <span className="text-body-sm text-muted-foreground">
-          {row.original.plan}
+        <span className="text-xs text-muted-foreground">
+          {row.original.email}
         </span>
       </div>
     ),
@@ -59,7 +62,18 @@ export const recentActivityColumns: ColumnDef<RecentActivity>[] = [
         style: "currency",
         currency: "USD",
       }).format(amount);
-      return <div className="text-right font-medium">{formatted}</div>;
+      return (
+        <div className="text-right font-medium font-mono">{formatted}</div>
+      );
     },
   },
-];
+  {
+    accessorKey: "date",
+    header: () => <div className="text-right">Date</div>,
+    cell: ({ row }) => (
+      <div className="text-right text-muted-foreground">
+        {row.getValue("date")}
+      </div>
+    ),
+  },
+]);

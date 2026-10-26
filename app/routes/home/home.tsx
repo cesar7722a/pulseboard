@@ -13,11 +13,12 @@ import type { Route } from "./+types/home";
 import { ActivityStream } from "./components/activity-stream";
 import { CustomerGrowthCard } from "./components/customer-growth-card";
 import { ServiceHealth } from "./components/service-health";
+import { RecentTransactions } from "./recent-transactions";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "PulseBoard - Overview" },
+    { name: "description", content: "Dashboard Overview" },
   ];
 }
 
@@ -102,8 +103,9 @@ export default function Customers() {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* Coluna Esquerda - Ocupa 2 colunas */}
-        <div className="lg:col-span-2 flex flex-col">
+        <div className="lg:col-span-2 flex flex-col space-y-10">
           <RevenueCard />
+          <RecentTransactions />
         </div>
 
         {/* Coluna Direita - Ocupa 1 coluna e empilha os dois */}
@@ -113,8 +115,6 @@ export default function Customers() {
           <ServiceHealth />
         </div>
       </div>
-
-      {/* <RecentTransactions /> */}
     </div>
   );
 }
