@@ -9,7 +9,7 @@ export default [
   layout("./layout.tsx", [
     index("routes/home/home.tsx"),
     route("customers", "routes/customers/customers.tsx"),
-    route("subscriptions", "routes/subscriptions.tsx"),
+    route("subscriptions", "routes/subscriptions/subscriptions.tsx"),
     route("analytics", "routes/analytics.tsx"),
     route("settings", "routes/settings.tsx"),
   ]),

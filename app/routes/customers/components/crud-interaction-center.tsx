@@ -62,7 +62,7 @@ export function CrudInteractionCenter() {
           {/* O mt-auto empurra os botões para o fundo do card, mantendo alinhamento perfeito entre colunas */}
           <CardContent className="mt-auto pt-4 flex flex-row items-center gap-2">
             <Dialog open={addModalOpen} onOpenChange={setAddModalOpen}>
-              <DialogTrigger asChild>
+              <DialogTrigger>
                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                   Launch Add Modal
                 </Button>
@@ -98,7 +98,7 @@ export function CrudInteractionCenter() {
           </CardHeader>
           <CardContent className="mt-auto pt-4 flex flex-row items-center gap-2">
             <AlertDialog>
-              <AlertDialogTrigger asChild>
+              <AlertDialogTrigger>
                 <Button
                   variant="outline"
                   className="bg-danger-surface text-danger hover:bg-danger-surface/80 border-danger-border"
