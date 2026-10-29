@@ -1,11 +1,9 @@
-import type { Subscription } from "~/types/dashboard";
 import type { Route } from "./+types/subscriptions";
 import {
   AlertCircle,
   AlertTriangle,
   ArrowRight,
   CheckCircle2,
-  ChevronRight,
   CreditCard,
   Download,
   PieChart,
@@ -14,7 +12,6 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
-import { CompactMetricCard } from "../customers/components/compact-metric-card";
 import { DataTable } from "~/components/data-table/data-table";
 import { columns } from "./components/columns";
 import { subscriptionPlans, subscriptions } from "~/data/subscriptions";
@@ -94,44 +91,6 @@ export const subscriptionStats: SubscriptionStat[] = [
 ];
 
 export default function SubscriptionsPage() {
-  // 1. Dicionário de Ícones
-  const iconMap: Record<string, React.ReactNode> = {
-    "trending-up": <TrendingUp className="size-4" />,
-    "credit-card": <CreditCard className="size-4" />,
-    "refresh-cw": <RefreshCcw className="size-4" />,
-    "alert-circle": <AlertCircle className="size-4" />,
-  };
-
-  // 2. Dicionário de Cores (respeitando o teu Design System)
-  const colorMap: Record<
-    SubscriptionStat["color"],
-    { bg: string; text: string }
-  > = {
-    green: { bg: "bg-success-surface", text: "text-success" },
-    red: { bg: "bg-danger-surface", text: "text-danger" },
-    gray: { bg: "bg-muted", text: "text-muted-foreground" },
-    purple: {
-      bg: "bg-indigo-50 dark:bg-indigo-950/30",
-      text: "text-indigo-600 dark:text-indigo-400",
-    },
-  };
-
-  // 3. Formatador de Valores (agora suporta moeda)
-  const formatValue = (
-    value: number,
-    format: "number" | "currency" | "percentage",
-  ) => {
-    if (format === "percentage") return `${value}%`;
-    if (format === "currency") {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0, // Para o MRR não mostrar centavos (ex: $124,500)
-      }).format(value);
-    }
-    return new Intl.NumberFormat("en-US").format(value);
-  };
-
   return (
     <div className="flex flex-col gap-6">
       {/* Header */}
