@@ -10,7 +10,7 @@ export default [
     index("routes/home/home.tsx"),
     route("customers", "routes/customers/customers.tsx"),
     route("subscriptions", "routes/subscriptions/subscriptions.tsx"),
-    route("analytics", "routes/analytics.tsx"),
+    route("analytics", "routes/analytics/analytics.tsx"),
     route("settings", "routes/settings.tsx"),
   ]),
 ] satisfies RouteConfig;
